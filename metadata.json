@@ -1,0 +1,6 @@
+{
+  "name": "N STUDIO Portfolio Hero",
+  "description": "N STUDIO — full-screen creative portfolio hero section with crossfade video background, live Cupertino clock, and dynamic typography.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

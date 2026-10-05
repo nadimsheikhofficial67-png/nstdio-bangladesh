@@ -1,0 +1,172 @@
+@import "tailwindcss";
+
+:root {
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000000;
+  color: #ffffff;
+  font-family: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Keyframes */
+@keyframes videoFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(80px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes revealRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes dotPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(1.45);
+  }
+}
+
+/* Animation utility classes */
+.animate-reveal-up {
+  animation: revealUp 0.9s var(--ease-spring) forwards;
+}
+
+.animate-reveal-right {
+  animation: revealRight 0.9s var(--ease-spring) forwards;
+}
+
+.pulse-dot {
+  animation: dotPulse 1.6s infinite ease-in-out;
+}
+
+/* Nav Link Underline Effect */
+.nav-link-underline {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  text-decoration: none;
+  padding-bottom: 2px;
+}
+
+.nav-link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #ffffff;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.35s var(--ease-spring);
+}
+
+.nav-link-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Role Link Hover Animation */
+.role-link {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.3s var(--ease-spring), opacity 0.3s ease;
+  will-change: transform;
+}
+
+.role-link:hover {
+  transform: translateX(4px);
+}
+
+/* CTA Fill-up Button */
+.cta-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid #ffffff;
+  background: transparent;
+  color: #ffffff;
+  transition: border-color 0.4s var(--ease-spring), color 0.4s var(--ease-spring);
+  z-index: 1;
+}
+
+.cta-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: #F598F2;
+  transform: translateY(101%);
+  transition: transform 0.45s var(--ease-spring);
+  z-index: -1;
+}
+
+.cta-button:hover {
+  border-color: #F598F2;
+  color: #000000;
+}
+
+.cta-button:hover::before {
+  transform: translateY(0);
+}
+
+/* Mobile Menu Grid Accordion */
+.mobile-menu-grid {
+  display: grid;
+  transition: grid-template-rows 420ms var(--ease-spring);
+}
+
+.mobile-menu-grid.menu-open {
+  grid-template-rows: 1fr;
+}
+
+.mobile-menu-grid.menu-closed {
+  grid-template-rows: 0fr;
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
